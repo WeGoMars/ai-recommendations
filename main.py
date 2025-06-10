@@ -1,0 +1,117 @@
+from flask import Flask, request, jsonify
+
+app = Flask(__name__)
+
+@app.route('/api/ai/test', methods=['POST'])
+def test_ai_payload():
+    data = request.get_json()
+    print("📦 Received from NestJS:")
+    print("simplePF:", data.get("simplePF"))
+    print("stockPF:", data.get("stockPF"))
+    print("marketReport:", data.get("marketReport"))
+
+    # 📄 목데이터 기반 추천 응답
+    recommended = [
+        {
+            "symbol": "AAPL",
+            "name": "Apple Inc.",
+            "sector": "Technology",
+            "industry": "Consumer Electronics",
+            "score": 85.0,
+            "reasons": [
+                {
+                    "type": "strategy",
+                    "detail": "성장 안정성 전략과 부합",
+                    "score": 28
+                },
+                {
+                    "type": "metric",
+                    "detail": "ROE 18%, 부채비율 60%",
+                    "score": 27
+                },
+                {
+                    "type": "commentary",
+                    "detail": "안정적 실적과 배당 성향으로 인한 우량주 평가",
+                    "score": 30
+                }
+            ]
+        },
+        {
+            "symbol": "MSFT",
+            "name": "Microsoft Corp.",
+            "sector": "Technology",
+            "industry": "Software—Infrastructure",
+            "score": 88.0,
+            "reasons": [
+                {
+                    "type": "strategy",
+                    "detail": "저변동성 + 성장 전략 적합",
+                    "score": 30
+                },
+                {
+                    "type": "metric",
+                    "detail": "ROE 40%, P/E 34.5",
+                    "score": 28
+                },
+                {
+                    "type": "commentary",
+                    "detail": "클라우드 수요 기반의 성장성 기대",
+                    "score": 30
+                }
+            ]
+        },
+        {
+            "symbol": "NVDA",
+            "name": "NVIDIA Corporation",
+            "sector": "Technology",
+            "industry": "Semiconductors",
+            "score": 90.0,
+            "reasons": [
+                {
+                    "type": "strategy",
+                    "detail": "초고성장 전략에 완벽 부합",
+                    "score": 30
+                },
+                {
+                    "type": "metric",
+                    "detail": "ROE 70%, 고PER (AI 주도)",
+                    "score": 30
+                },
+                {
+                    "type": "commentary",
+                    "detail": "AI 시대의 핵심 반도체 기업으로 평가",
+                    "score": 30
+                }
+            ]
+        },
+        {
+            "symbol": "JNJ",
+            "name": "Johnson & Johnson",
+            "sector": "Healthcare",
+            "industry": "Drug Manufacturers—General",
+            "score": 81.5,
+            "reasons": [
+                {
+                    "type": "strategy",
+                    "detail": "배당 안정 전략과 부합",
+                    "score": 27
+                },
+                {
+                    "type": "metric",
+                    "detail": "배당률 2.9%, 낮은 변동성",
+                    "score": 25.5
+                },
+                {
+                    "type": "commentary",
+                    "detail": "방어적 섹터의 대표주자, 경기 하락기 적합",
+                    "score": 29
+                }
+            ]
+        }
+    ]
+
+    return jsonify({"recommended": recommended}), 200
+
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)
