@@ -1,0 +1,63 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+.env/
+.venv/
+env/
+venv/
+mars-ai/
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# VSCode settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# MyPy cache
+.mypy_cache/
+
+# Scikit-learn joblib cache or other cache
+**/__pycache__/
+**/.pytest_cache/
+**/.cache/
+*.joblib
+*.pkl
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Flask instance folder
+instance/
+
+# Ignore local .env and config files
+.env
+.env.*
+
+# Test outputs
+coverage/
+htmlcov/
+.cache/
+.pytest_cache/
+
+# Notebook outputs
+*.nbconvert.ipynb
+
+# Ignore data files if any
+*.csv
+*.tsv
+*.sqlite3
+*.db

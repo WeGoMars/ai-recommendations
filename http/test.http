@@ -1,0 +1,70 @@
+### AI 추천 테스트용 POST 요청
+POST http://127.0.0.1:5000/recommend
+Content-Type: application/json
+
+{
+  "simplePF": {
+    "totalAsset": 105321.82,
+    "investedAmount": 719.82,
+    "evalGain": 9,
+    "returnRate": 0.01250312578144536,
+    "totalSeed": 105206,
+    "investRatio": 0.006842005208828395,
+    "cash": 104593
+  },
+  "stockPF": [
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "quantity": 3,
+      "avgBuyPrice": 202.66,
+      "evalAmount": 616.98,
+      "evalGain": 9,
+      "returnRate": 0.014803118523635646
+    },
+    {
+      "symbol": "A",
+      "name": "Agilent Technologies, Inc.",
+      "quantity": 1,
+      "avgBuyPrice": 111.84,
+      "evalAmount": 111.84,
+      "evalGain": 0,
+      "returnRate": 0
+    }
+  ],
+  "marketReport": {
+    "snp500_returns": {
+      "1m": 5.35,
+      "2m": -0.71,
+      "3m": -2.12,
+      "4m": 0.52,
+      "5m": -1.99,
+      "6m": 3.62,
+      "7m": 2.6,
+      "8m": 4.67,
+      "9m": 7.06,
+      "10m": 8.27,
+      "11m": 12.03,
+      "12m": 17.41
+    },
+    "vix": [
+      21.9, 18.39, 18.22,
+      18.62, 17.83, 17.24,
+      18.14, 18.09, 20.87,
+      20.28, 22.29, 20.57,
+      18.96, 19.31, 19.18
+    ],
+    "fedfunds_average": {
+      "2024-07": 5.33,
+      "2024-08": 5.33,
+      "2024-09": 5.13,
+      "2024-10": 4.83,
+      "2024-11": 4.64,
+      "2024-12": 4.48,
+      "2025-01": 4.33,
+      "2025-02": 4.33,
+      "2025-03": 4.33,
+      "2025-04": 4.33
+    }
+  }
+}
