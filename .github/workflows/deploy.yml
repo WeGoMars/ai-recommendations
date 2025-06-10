@@ -24,4 +24,4 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_CI_KEY }}
           source: "build/*"
-          target: "~/infra/ai-re
+          target: "~/infra/ai-recommendations/"
