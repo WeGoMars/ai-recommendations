@@ -12,10 +12,19 @@ jobs:
       - name: Checkout source
         uses: actions/checkout@v3
 
-      - name: Archive repository into ./build folder (excluding .git and build)
+      - name: Archive repository into ./build folder (excluding unnecessary files)
         run: |
           mkdir -p build
-          rsync -av --exclude='.git' --exclude='build' ./ ./build/
+          rsync -av \
+            --exclude='.git' \
+            --exclude='build' \
+            --exclude='__pycache__' \
+            --exclude='*.pyc' \
+            --exclude='*.pyo' \
+            --exclude='*.log' \
+            --exclude='.DS_Store' \
+            --exclude='.env' \
+            ./ ./build/
 
       - name: Upload to EC2 ~/infra/ai-recommendations/
         uses: appleboy/scp-action@v0.1.3
