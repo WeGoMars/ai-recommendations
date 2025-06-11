@@ -1,0 +1,56 @@
+@host = https://13.220.145.152/api
+
+### Request : sign up
+POST {{host}}/users/
+Content-Type: application/json
+
+{
+  "email": "elon5@mars.com",
+  "password": "wegomars",
+  "nick": "doge1"
+}
+
+### Request : sign in
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+  "email": "elon5@mars.com",
+  "password": "wegomars"
+}
+######################################################################
+### Request : get my wallet
+GET {{host}}/wallets
+
+### Request : update my wallet
+PUT {{host}}/wallets
+Content-Type: application/json
+
+{
+  "amount": "+5000"
+}
+######################################################################
+### Request : get Detailed Stock data
+@symbol = AAPL
+GET {{host}}/stocks/{{symbol}}
+
+######################################################################
+### Request : Buy stock
+POST {{host}}/trades/buy
+Content-Type: application/json
+
+{
+  "symbol": "AAPL",
+  "quantity": "1",
+  "price":"205.66"
+}
+
+### Request : Sell stock
+POST {{host}}/trades/sell
+Content-Type: application/json
+
+{
+  "symbol": "AAPL",
+  "quantity": "1",
+  "price":"205.66"
+}

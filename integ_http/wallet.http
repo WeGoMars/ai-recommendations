@@ -1,0 +1,34 @@
+@host = https://13.220.145.152/api
+
+### Request : sign in
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+  "email": "elon9@mars.com",
+  "password": "wegomars"
+}
+
+### Request : log out
+GET {{host}}/users/logout
+
+### Request : get my wallet
+GET {{host}}/wallets
+
+### Request : create my wallet
+POST {{host}}/wallets
+Content-Type: application/json
+
+{
+  "amount": 100000
+}
+
+
+
+### Request : update my wallet
+PUT {{host}}/wallets
+Content-Type: application/json
+
+{
+  "amount": "100000"
+}

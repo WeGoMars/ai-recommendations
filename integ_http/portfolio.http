@@ -1,0 +1,48 @@
+@host = https://13.220.145.152/api
+
+### Request : sign up
+POST {{host}}/users/
+Content-Type: application/json
+
+{
+  "email": "elon5@mars.com",
+  "password": "wegomars",
+  "nick": "doge1"
+}
+
+### Request : sign in
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+  "email": "elon5@mars.com",
+  "password": "wegomars"
+}
+######################################################################
+### Request : like
+POST {{host}}/portfolios/like
+Content-Type: application/json
+
+{
+    "symbol" : "TSLA"
+}
+
+### Request : dislike
+DELETE {{host}}/portfolios/like
+Content-Type: application/json
+
+{
+    "symbol" : "TSLA"
+}
+
+### Request : getlike
+GET {{host}}/portfolios/like
+
+### Request : getMyStock
+GET {{host}}/portfolios/list
+
+### Request : getMyStock
+GET {{host}}/portfolios/overall
+
+### Request : getMyStock
+GET {{host}}/portfolios/stock
