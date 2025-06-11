@@ -10,7 +10,7 @@ recommend_bp = Blueprint("recommend", __name__, url_prefix="/recommend")
 def recommend():
     try:
         data = request.get_json()
-        # print("📩 받은 요청 데이터:", data)
+        print("📩 받은 요청 데이터:", data)
 
         # 서비스 계층 호출
         result = handle_recommendation_request(data)
