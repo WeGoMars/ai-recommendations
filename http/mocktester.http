@@ -1,0 +1,39 @@
+# https://mars.gensapps.io
+
+@host = https://mars.gensapps.io/api
+
+### Request : sign up
+POST {{host}}/users/
+Content-Type: application/json
+
+{
+  "email": "elon11@mars.com",
+  "password": "wegomars",
+  "nick": "doge1"
+}
+
+### Request : sign in
+POST {{host}}/users/login
+Content-Type: application/json
+
+{
+  "email": "elon5@mars.com",
+  "password": "wegomars"
+}
+######################################################################
+### create user preference
+POST {{host}}/ai/preference
+Content-Type: application/json
+
+{
+  "riskLevel": "high",
+  "preferredStrategies": ["dividend_stability", "portfolio_balance", "value_stability", "momentum", "sector_rotation", "rebound_buy"],
+  "preferredSectors" : ["Basic Materials", "Communication Services", "Consumer Cyclical", "Consumer Defensive", "Energy", "Financial Services", "Healthcare", "Industrials", "Real Estate", "Technology", "Utilities" ]
+}
+
+### Get preference
+GET {{host}}/ai/preference
+
+
+### Get recommend
+GET {{host}}/ai/recommend

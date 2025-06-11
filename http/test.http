@@ -66,5 +66,33 @@ Content-Type: application/json
       "2025-03": 4.33,
       "2025-04": 4.33
     }
+  },
+  "userPreference": {
+    "id": 1,
+    "riskLevel": "high",
+    "preferredStrategies": [
+      "dividend_stability",
+      "portfolio_balance",
+      "value_stability",
+      "momentum",
+      "sector_rotation",
+      "rebound_buy"
+    ],
+    "preferredSectors": [
+      "Basic Materials",
+      "Communication Services",
+      "Consumer Cyclical",
+      "Consumer Defensive",
+      "Energy",
+      "Financial Services",
+      "Healthcare",
+      "Industrials",
+      "Real Estate",
+      "Technology",
+      "Utilities"
+    ],
+    "createdAt": "2025-06-09T15:59:48.324Z",
+    "updatedAt": "2025-06-09T17:57:23.000Z"
   }
 }
+

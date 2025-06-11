@@ -1,16 +1,4 @@
-from flask import Flask, request, jsonify
-
-app = Flask(__name__)
-
-@app.route('/ai/test', methods=['POST'])
-def test_ai_payload():
-    data = request.get_json()
-    print("📦 Received from NestJS:")
-    print("simplePF:", data.get("simplePF"))
-    print("stockPF:", data.get("stockPF"))
-    print("marketReport:", data.get("marketReport"))
-
-    # 📄 목데이터 기반 추천 응답
+ # 📄 목데이터 기반 추천 응답
     recommended = [
         {
             "symbol": "AAPL",
@@ -109,9 +97,3 @@ def test_ai_payload():
             ]
         }
     ]
-
-    return jsonify({"recommended": recommended}), 200
-
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000, debug=True)
