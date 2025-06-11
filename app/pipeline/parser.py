@@ -1,10 +1,3 @@
-# 📁 app/pipeline/parser.py
-
-from typing import Dict, Any
-from app.schemas.ai_rec_dto import RecommendationRequest
-
-# 📁 app/pipeline/parser.py
-
 from typing import Dict, Any
 from app.schemas.ai_rec_dto import RecommendationRequest
 from app.pipeline.sectors import sector_table

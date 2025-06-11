@@ -1,5 +1,5 @@
 from sqlalchemy import Column, Integer, String, Float, Date, DateTime, func, UniqueConstraint
-from models import Base
+from app.models import Base
 
 class SectorPerformance(Base):
     __tablename__ = "sector_performance"

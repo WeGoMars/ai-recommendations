@@ -20,21 +20,24 @@ strategy_definitions = [
             "자산 리밸런싱을 통해 안정성을 높이려는 상황에서 적합합니다."
         ),
         "evaluation_criteria": [
-            {"name": "beta", "description": "시장 민감도", "weight": -0.3},
-            {"name": "volatility", "description": "변동성 (표준편차)", "weight": -0.4},
-            {"name": "current_ratio", "description": "유동비율", "weight": 0.3}
-        ]
+                {"name": "beta", "description": "시장 민감도", "weight": -0.25},
+                {"name": "current_ratio", "description": "유동비율", "weight": 0.25},
+                {"name": "roe", "description": "자기자본이익률", "weight": 0.25},
+                {"name": "preferred_sector_score", "description": "사용자 선호 섹터 여부", "weight": 0.15},
+                {"name": "underweighted_sector_score", "description": "보유 비중이 낮은 섹터 여부", "weight": 0.10}
+            ]
     },
     {
         "name": "value_stability",
-        "description": "저평가된 우량주를 선별하여 장기적인 안정성과 수익을 추구하는 전략입니다.",
+        "description": "실적(EPS)과 자산(BPS) 기준으로 저평가된 종목을 발굴하여 안정적인 수익을 추구하는 가치 투자 전략입니다.",
         "when_to_use": (
-            "사용자의 리스크 허용 수준이 'low'이고, 시장 수익률이 낮아 단기 모멘텀보다는 내재가치를 중시하는 판단이 필요한 경우."
+            "사용자의 리스크 허용 수준이 'medium' 이하이며, 변동성 높은 시장에서도 안정적인 내재 가치를 바탕으로 투자하고자 할 때 유용합니다. "
+            "특히 실적 대비 시가총액이 낮거나 자산 대비 저평가된 종목에 관심이 있을 때 적합합니다."
         ),
         "evaluation_criteria": [
-            {"name": "pe_ratio", "description": "주가수익비율", "weight": -0.5},
-            {"name": "pb_ratio", "description": "주가순자산비율", "weight": -0.3},
-            {"name": "roe", "description": "자기자본이익률", "weight": 0.2}
+            {"name": "earning_yield_score", "description": "EPS 대비 시가총액 비율 (높을수록 저평가)", "weight": 0.4},
+            {"name": "book_yield_score", "description": "BPS 대비 시가총액 비율 (높을수록 저평가)", "weight": 0.3},
+            {"name": "roe", "description": "자기자본이익률 (높을수록 우량)", "weight": 0.3}
         ]
     },
     {
@@ -57,9 +60,9 @@ strategy_definitions = [
             "현재 보유 종목의 섹터와 사용자의 선호 섹터 간 불일치가 존재할 때."
         ),
         "evaluation_criteria": [
-            {"name": "sector_trend_score", "description": "최근 5일간 섹터 평균 수익률", "weight": 0.6},
+            {"name": "sector_trend_score", "description": "최근 5일간 섹터 평균 수익률", "weight": 0.5},
             {"name": "price_change_1m", "description": "1개월 주가 수익률", "weight": 0.3},
-            {"name": "volatility", "description": "변동성", "weight": -0.1}
+            {"name": "volatility", "description": "단기 주가 변동성", "weight": 0.2}
         ]
     },
     {

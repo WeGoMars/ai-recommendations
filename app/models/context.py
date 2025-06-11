@@ -15,7 +15,16 @@ class RecommendationContext:
     def debug(self):
         return {
             "parsed_request": self.parsed_request,
-            "request_markdown":self.request_markdown,
+            "request_markdown": self.request_markdown,
             "selected_strategies": [s["name"] for s in self.selected_strategies],
+            "scored_candidates": [
+                {
+                    "symbol": s["symbol"],
+                    "score": s["score"],
+                    "metrics": s.get("metrics", []),
+                    "reasons": s.get("reasons", [])
+                }
+                for s in self.scored_candidates
+            ],
             "final_stocks": [s["symbol"] for s in self.final_stocks]
         }

@@ -1,0 +1,142 @@
+{
+  "simplePF": {
+    "totalAsset": 203421.93,
+    "investedAmount": 98523.75,
+    "evalGain": 6240,
+    "returnRate": 0.0652,
+    "totalSeed": 197181.93,
+    "investRatio": 0.4845,
+    "cash": 104898.18
+  },
+  "stockPF": [
+    {
+      "symbol": "AAPL",
+      "name": "Apple Inc.",
+      "quantity": 3,
+      "avgBuyPrice": 202.66,
+      "evalAmount": 616.98,
+      "evalGain": 9,
+      "returnRate": 0.0148
+    },
+    {
+      "symbol": "A",
+      "name": "Agilent Technologies, Inc.",
+      "quantity": 1,
+      "avgBuyPrice": 111.84,
+      "evalAmount": 111.84,
+      "evalGain": 0,
+      "returnRate": 0
+    },
+    {
+      "symbol": "MSFT",
+      "name": "Microsoft Corp.",
+      "quantity": 4,
+      "avgBuyPrice": 375.0,
+      "evalAmount": 1580.0,
+      "evalGain": 40,
+      "returnRate": 0.026
+    },
+    {
+      "symbol": "TSLA",
+      "name": "Tesla Inc.",
+      "quantity": 6,
+      "avgBuyPrice": 185.0,
+      "evalAmount": 1110.0,
+      "evalGain": -60,
+      "returnRate": -0.051
+    },
+    {
+      "symbol": "JNJ",
+      "name": "Johnson & Johnson",
+      "quantity": 2,
+      "avgBuyPrice": 160.0,
+      "evalAmount": 315.0,
+      "evalGain": -5,
+      "returnRate": -0.0156
+    },
+    {
+      "symbol": "XOM",
+      "name": "Exxon Mobil Corp.",
+      "quantity": 5,
+      "avgBuyPrice": 105.0,
+      "evalAmount": 545.0,
+      "evalGain": 20,
+      "returnRate": 0.0385
+    },
+    {
+      "symbol": "NVDA",
+      "name": "NVIDIA Corp.",
+      "quantity": 2,
+      "avgBuyPrice": 950.0,
+      "evalAmount": 2220.0,
+      "evalGain": 320,
+      "returnRate": 0.1695
+    }
+  ],
+  "marketReport": {
+    "snp500_returns": {
+      "1m": 5.35,
+      "2m": -0.71,
+      "3m": -2.12,
+      "4m": 0.52,
+      "5m": -1.99,
+      "6m": 3.62,
+      "7m": 2.6,
+      "8m": 4.67,
+      "9m": 7.06,
+      "10m": 8.27,
+      "11m": 12.03,
+      "12m": 17.41
+    },
+    "vix": [
+      21.9,
+      18.39,
+      18.22,
+      18.62,
+      17.83,
+      17.24,
+      18.14,
+      18.09,
+      20.87,
+      20.28,
+      22.29,
+      20.57,
+      18.96,
+      19.31,
+      19.18
+    ],
+    "fedfunds_average": {
+      "2024-07": 5.33,
+      "2024-08": 5.33,
+      "2024-09": 5.13,
+      "2024-10": 4.83,
+      "2024-11": 4.64,
+      "2024-12": 4.48,
+      "2025-01": 4.33,
+      "2025-02": 4.33,
+      "2025-03": 4.33,
+      "2025-04": 4.33
+    }
+  },
+  "userPreference": {
+    "id": 1,
+    "riskLevel": "high",
+    "preferredStrategies": [
+      "dividend_stability",
+      "portfolio_balance",
+      "value_stability",
+      "momentum",
+      "sector_rotation",
+      "rebound_buy"
+    ],
+    "preferredSectors": [
+      "Technology",
+      "Healthcare",
+      "Energy",
+      "Consumer Defensive",
+      "Industrials"
+    ],
+    "createdAt": "2025-06-09T15:59:48.324Z",
+    "updatedAt": "2025-06-09T17:57:23.000Z"
+  }
+}
