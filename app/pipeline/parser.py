@@ -7,7 +7,10 @@ from app.schemas.ai_rec_dto import RecommendationRequest
 
 from typing import Dict, Any
 from app.schemas.ai_rec_dto import RecommendationRequest
+from app.pipeline.sectors import sector_table
+from collections import defaultdict
 
+symbol_sector_map = {entry["symbol"].upper(): entry["sector"] for entry in sector_table["rows"]}
 
 def parse(request_data: RecommendationRequest) -> Dict[str, Any]:
     simple = request_data["simplePF"]
@@ -32,7 +35,8 @@ def parse(request_data: RecommendationRequest) -> Dict[str, Any]:
                 "average_buy_price": s["avgBuyPrice"],
                 "current_valuation": s["evalAmount"],
                 "valuation_gain": s["evalGain"],
-                "return_rate": s["returnRate"]
+                "return_rate": s["returnRate"],
+                "sector": symbol_sector_map.get(s["symbol"].upper(), "Unknown")
             } for s in stock_list
         ],
         "market_environment": {
@@ -64,6 +68,18 @@ def parse(request_data: RecommendationRequest) -> Dict[str, Any]:
 
     return parsed
 
+def get_sector_distribution(held_stocks: list[dict]) -> dict[str, float]:
+    total = sum(stock["current_valuation"] for stock in held_stocks)
+    sector_map = defaultdict(float)
+
+    for stock in held_stocks:
+        sector = stock.get("sector", "Unknown")
+        sector_map[sector] += stock["current_valuation"]
+
+    return {
+        sector: round((value / total) * 100, 1)
+        for sector, value in sector_map.items()
+    } if total > 0 else {}
 
 def to_markdown(parsed_request: Dict[str, Any]) -> str:
     """
@@ -73,7 +89,7 @@ def to_markdown(parsed_request: Dict[str, Any]) -> str:
 
     # 사용자 포트폴리오
     up = parsed_request["user_portfolio"]
-    md.append("## 👤 사용자 포트폴리오 요약\n")
+    md.append("## 사용자 포트폴리오 요약\n")
     md.append(f"- 총 자산: ${up['total_asset_amount']:,.2f}")
     md.append(f"- 투자 금액: ${up['invested_amount']:,.2f}")
     md.append(f"- 투자 비율: {up['investment_ratio']:.2%}")
@@ -81,13 +97,17 @@ def to_markdown(parsed_request: Dict[str, Any]) -> str:
     md.append(f"- 현금 비중: {up['total_cash_amount'] / up['total_asset_amount']:.2%}\n")
 
     # 보유 종목
-    md.append("## 📈 보유 종목 요약\n")
+    md.append("## 보유 종목 요약\n")
     for stock in parsed_request["held_stocks"]:
         md.append(f"- **{stock['ticker_symbol']} ({stock['company_name']})**: "
                   f"{stock['number_of_shares']}주, "
                   f"평균매입가 ${stock['average_buy_price']:.2f}, "
                   f"평가금액 ${stock['current_valuation']:.2f}, "
                   f"수익률 {stock['return_rate']:.2%}")
+    
+    md.append("\n## 보유 섹터 분포")
+    for sector, ratio in get_sector_distribution(parsed_request["held_stocks"]).items():
+        md.append(f"- {sector}: {ratio:.1f}%")
 
     # 시장 환경
     me = parsed_request["market_environment"]
@@ -95,24 +115,24 @@ def to_markdown(parsed_request: Dict[str, Any]) -> str:
     vix = me["vix_volatility_index"]
     fed = me["fed_funds_interest_rate"]
 
-    md.append("\n## 🌐 시장 환경 요약\n")
+    md.append("\n## 시장 환경 요약\n")
     md.append("### 📊 S&P 500 수익률")
     md.append(f"- 설명: {snp['description']}")
     md.append(f"- 최근 12개월 평균 수익률: {snp['average_return_last_12_months']:.2f}%")
 
-    md.append("\n### 📉 VIX 변동성")
+    md.append("\n### VIX 변동성")
     md.append(f"- 설명: {vix['description']}")
     md.append(f"- 최근 평균 VIX: {vix['average']:.2f}")
     md.append(f"- 최신 VIX: {vix['most_recent']:.2f}")
 
-    md.append("\n### 💰 연준 기준금리")
+    md.append("\n### 연준 기준금리")
     md.append(f"- 설명: {fed['description']}")
     md.append(f"- 최근 3개월: {', '.join([f'{r:.2f}%' for r in fed['most_recent_three_months']])}")
     
     
     # 사용자 선호
     upref = parsed_request["user_preference"]
-    md.append("\n## 💡 사용자 선호 정보")
+    md.append("\n## 사용자 선호 정보")
     md.append(f"- 리스크 허용 수준: {upref['risk_level'].capitalize()}")
     md.append(f"- 선호 전략: {', '.join(upref['preferred_strategies'])}")
     md.append(f"- 선호 섹터: {', '.join(upref['preferred_sectors'])}")

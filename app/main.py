@@ -6,7 +6,7 @@ def create_app():
     app.register_blueprint(recommend_bp)
     
     
-    print("📌 Registered Routes:")
+    print("📌 Registered Routes:")  
     for rule in app.url_map.iter_rules():
         print(f"{rule.endpoint:25s} {rule.methods} {rule.rule}")
     return app
