@@ -4,7 +4,7 @@ import os
 from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
-from strategies.definitions import strategy_definitions
+from app.strategies.definitions import strategy_definitions
 
 load_dotenv()
 
@@ -49,9 +49,9 @@ def select_strategies(markdown_doc: str, parsed_request: Dict) -> List[Dict]:
 
     messages = prompt.format_messages()
     response = llm.invoke(messages)
-    print("🧾 LLM 응답 원문 ↓↓↓")
-    print(response.content)
-    print("")
+    # print("🧾 LLM 응답 원문 ↓↓↓")
+    # print(response.content)
+    # print("")
     return parse_llm_response(response.content)
 
 

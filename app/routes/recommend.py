@@ -1,4 +1,5 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, Response
+import json
 from app.services.recommend_service import handle_recommendation_request
 
 
@@ -14,7 +15,11 @@ def recommend():
         # 서비스 계층 호출
         result = handle_recommendation_request(data)
 
-        return jsonify(result), 200
+        return Response(
+            json.dumps(result, ensure_ascii=False),
+            content_type="application/json; charset=utf-8"
+        ), 200
+    
     except Exception as e:
         print("❌ 오류 발생:", e)
         return jsonify({"error": str(e)}), 500

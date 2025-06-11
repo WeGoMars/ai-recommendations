@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, String, Date, Float, DateTime, UniqueConstraint, Index
 from sqlalchemy.sql import func
-from models import Base
+from app.models import Base
 
 class StockMarket(Base):
     __tablename__ = "stock_market"
